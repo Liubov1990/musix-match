@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ContextProvider from "./context/LyricsContext";
 import Home from "./pages/Home";
 import Lyrics from "./pages/Lyrics";
 import PageNotFound from "./pages/PageNotFound";
@@ -7,15 +8,17 @@ import "./App.css";
 
 function App(): JSX.Element {
   return (
-    <Router>
-      <Routes>
-        <Route element={<PageLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/lyrics/track/:id" element={<Lyrics />} />
-        </Route>
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Router>
+    <ContextProvider>
+      <Router>
+        <Routes>
+          <Route element={<PageLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/lyrics/track/:id" element={<Lyrics />} />
+          </Route>
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
+    </ContextProvider>
   );
 }
 
