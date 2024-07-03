@@ -11,7 +11,7 @@ function App(): JSX.Element {
       <Routes>
         <Route element={<PageLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/lyrics" element={<Lyrics />} />
+          <Route path="/lyrics/track/:id" element={<Lyrics />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
