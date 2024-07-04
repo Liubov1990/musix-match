@@ -15,7 +15,6 @@ function LyricsInfo(): React.ReactElement {
 
   const [track, setTrack] = useState<ITrackDetails | null>(null);
   const [lyrics, setLyrics] = useState<ILyricsDetails | null>(null);
-  console.log(track);
 
   useEffect(() => {
     displayLyrics();
