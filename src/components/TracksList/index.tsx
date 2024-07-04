@@ -29,15 +29,7 @@ function TracksList(): React.ReactElement {
     };
 
   return (
-    <Paper
-      elevation={6}
-      sx={{
-        p: { xs: 3, md: 8 },
-        px: { xs: 3, sm: 5, md: 8 },
-        my: { xs: 3, md: 4 },
-        borderRadius: "50px",
-      }}
-    >
+    <>
       {trackList?.map(
         (
           {
@@ -94,7 +86,7 @@ function TracksList(): React.ReactElement {
           </Accordion>
         )
       )}
-    </Paper>
+    </>
   );
 }
 
