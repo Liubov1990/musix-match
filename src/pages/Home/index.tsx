@@ -1,7 +1,8 @@
 import React from "react";
+import TracksList from "../../components/TracksList";
 
-function Home(): JSX.Element {
-  return <>Home</>;
+function Home(): React.ReactElement {
+  return <TracksList />;
 }
 
 export default Home;

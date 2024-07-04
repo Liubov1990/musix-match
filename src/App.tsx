@@ -6,7 +6,7 @@ import PageNotFound from "./pages/PageNotFound";
 import PageLayout from "./components/PageLayout";
 import "./App.css";
 
-function App(): JSX.Element {
+function App(): React.ReactElement {
   return (
     <ContextProvider>
       <Router>

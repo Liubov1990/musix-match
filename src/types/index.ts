@@ -29,6 +29,23 @@ export interface ITrack {
   track: ITrackDetails;
 }
 
+interface IMusicGenre {
+  music_genre: {
+    music_genre_id: number;
+    music_genre_name: string;
+    music_genre_name_extended: string;
+    music_genre_parent_id: number;
+    music_genre_vanity: string;
+  };
+}
+
+interface ITrackNameTranslation {
+  track_name_translation: {
+    language: string;
+    translation: string;
+  };
+}
+
 export interface ITrackDetails {
   album_id: number;
   album_name: string;
@@ -42,26 +59,13 @@ export interface ITrackDetails {
   instrumental: number;
   num_favourite: number;
   primary_genres: {
-    music_genre_list: [
-      music_genre: {
-        music_genre_id: number;
-        music_genre_name: string;
-        music_genre_name_extended: string;
-        music_genre_parent_id: number;
-        music_genre_vanity: string;
-      }
-    ];
+    music_genre_list: IMusicGenre[];
   };
   restricted: number;
   track_edit_url: string;
   track_id: number;
   track_name: string;
-  track_name_translation_list: [
-    track_name_translation: {
-      language: string;
-      translation: string;
-    }
-  ];
+  track_name_translation_list: ITrackNameTranslation[];
   track_rating: number;
   track_share_url: string;
   updated_time: Date;
