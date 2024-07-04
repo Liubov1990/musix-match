@@ -16,6 +16,7 @@ import React from "react";
 import Moment from "react-moment";
 import ButtonComponent from "../ButtonComponent";
 import TypographyElement from "../TypographyElement";
+import { Link } from "react-router-dom";
 
 function TracksList(): React.ReactElement {
   const { trackList } = useContext(LyricsContext);
@@ -85,7 +86,9 @@ function TracksList(): React.ReactElement {
               </TypographyElement>
 
               {has_lyrics === 1 && (
-                <ButtonComponent>View Lyrics</ButtonComponent>
+                <Link to={`/lyrics/track/${track_id}`}>
+                  <ButtonComponent>View Lyrics</ButtonComponent>
+                </Link>
               )}
             </AccordionDetails>
           </Accordion>

@@ -1,31 +1,31 @@
 import { createContext, useState } from "react";
 import { IChildren, ILyrics, ITrack } from "../types";
 
-type LyricsContextType = {
+type TrackListType = {
   trackList: ITrack[];
-  lyrics: ILyrics;
+  // lyrics: ILyrics;
   setTrackList: React.Dispatch<React.SetStateAction<ITrack[]>>;
-  setLyrics: React.Dispatch<React.SetStateAction<ILyrics>>;
+  // setLyrics: React.Dispatch<React.SetStateAction<ILyrics>>;
 };
 
-export const LyricsContext = createContext<LyricsContextType>({
+export const LyricsContext = createContext<TrackListType>({
   trackList: [],
-  lyrics: {} as ILyrics,
+  // lyrics: {} as ILyrics,
   setTrackList: () => null,
-  setLyrics: () => null,
+  // setLyrics: () => null,
 });
 
 export default function ContextProvider({
   children,
 }: IChildren): React.ReactNode {
   const [trackList, setTrackList] = useState<ITrack[]>([]);
-  const [lyrics, setLyrics] = useState<ILyrics>({} as ILyrics);
+  // const [lyrics, setLyrics] = useState<ILyrics>({} as ILyrics);
 
   const contextValue = {
     trackList,
-    lyrics,
+    // lyrics,
     setTrackList,
-    setLyrics,
+    // setLyrics,
   };
 
   return (

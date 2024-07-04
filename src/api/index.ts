@@ -1,7 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { API_KEY } from "../constants/apiKey";
 import { HEROCUAPP_LINK, MUSIXMATCH_LINK } from "../constants/apiLinks";
-import { ITrackLyricsResponce, ITrackSearchResponce } from "../types";
+import {
+  ITrackLyricsResponce,
+  ITrackSearchByIdResponce,
+  ITrackSearchResponce,
+} from "../types";
 
 export async function getTrackSearchRequest(
   title: string
@@ -16,11 +20,23 @@ export async function getTrackSearchRequest(
 }
 
 export async function getTrackLyricsRequest(
-  id: number
+  id: string
 ): Promise<AxiosResponse<ITrackLyricsResponce>> {
   try {
     return await axios.get(
       `${HEROCUAPP_LINK}${MUSIXMATCH_LINK}track.lyrics.get?track_id=${id}&apikey=${API_KEY}`
+    );
+  } catch (error: unknown) {
+    throw error;
+  }
+}
+
+export async function getTracByIdRequest(
+  id: string
+): Promise<AxiosResponse<ITrackSearchByIdResponce>> {
+  try {
+    return await axios.get(
+      `${HEROCUAPP_LINK}${MUSIXMATCH_LINK}track.get?track_id=${id}&apikey=${API_KEY}`
     );
   } catch (error: unknown) {
     throw error;

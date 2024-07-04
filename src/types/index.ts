@@ -80,6 +80,10 @@ export interface ITrackLyricsResponce {
   };
 }
 export interface ILyrics {
+  lyrics: ILyricsDetails;
+}
+
+export interface ILyricsDetails {
   lyrics_id: number;
   restricted: number;
   instrumental: number;
@@ -90,4 +94,13 @@ export interface ILyrics {
   lyrics_copyright: string;
   backlink_url: string;
   updated_time: Date;
+}
+
+// api search track by id
+
+export interface ITrackSearchByIdResponce {
+  message: {
+    header: ITrackSearchHeader;
+    body: ITrack;
+  };
 }

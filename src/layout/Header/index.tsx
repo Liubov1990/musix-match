@@ -1,7 +1,10 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import SearchTrack from "../../components/SearchTrack";
+import { Link, useLocation } from "react-router-dom";
 
 function Header(): React.ReactElement {
+  const { pathname } = useLocation();
+
   return (
     <AppBar
       position="static"
@@ -17,9 +20,9 @@ function Header(): React.ReactElement {
           component="h1"
           sx={{ flexGrow: 1, pb: { xs: 2, md: 0 } }}
         >
-          LyricsFinder
+          <Link to={"/"}>LyricsFinder</Link>
         </Typography>
-        <SearchTrack />
+        {pathname === "/" && <SearchTrack />}
       </Toolbar>
     </AppBar>
   );
