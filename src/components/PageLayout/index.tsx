@@ -6,9 +6,9 @@ import { Box } from "@mui/material";
 
 function PageLayout() {
   return (
-    <Container maxWidth="lg" sx={{ py: 2, height: "100vh" }}>
+    <Container maxWidth="lg" sx={{ py: 2 }}>
       <Header />
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box component="main" sx={{ flexGrow: 1, height: "100%" }}>
         <Outlet />
       </Box>
       <Footer />

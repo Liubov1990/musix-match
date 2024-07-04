@@ -37,20 +37,18 @@ function SearchTrack() {
   };
 
   return (
-    <>
-      <Search>
-        <SearchIconWrapper value={inputValue} onClick={displaySongsList}>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search track..."
-          inputProps={{ "aria-label": "search" }}
-          type="search"
-          onKeyUp={displaySongsListOnEnter}
-          onChange={handleInputChange}
-        />
-      </Search>
-    </>
+    <Search>
+      <SearchIconWrapper value={inputValue} onClick={displaySongsList}>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search track..."
+        inputProps={{ "aria-label": "search" }}
+        type="search"
+        onKeyUp={displaySongsListOnEnter}
+        onChange={handleInputChange}
+      />
+    </Search>
   );
 }
 

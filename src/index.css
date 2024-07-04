@@ -1,5 +1,27 @@
+body {
+  min-width: 320px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+/* Copy and paste and printing function of lyrics web pages are disabled for a Japanese viweer. */
+
+/* no print */
+@media print {
+  body {
+    display: none !important;
+  }
+}
+
+/* no selection */
+body {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
