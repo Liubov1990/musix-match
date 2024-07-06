@@ -3,7 +3,7 @@ import ContextProvider from "./context/LyricsContext";
 import Home from "./pages/Home";
 import Lyrics from "./pages/Lyrics";
 import PageNotFound from "./pages/PageNotFound";
-import PageLayout from "./components/PageLayout";
+import Layout from "./components/Layout";
 import "./App.css";
 
 function App(): React.ReactElement {
@@ -11,7 +11,7 @@ function App(): React.ReactElement {
     <ContextProvider>
       <Router>
         <Routes>
-          <Route element={<PageLayout />}>
+          <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/lyrics/track/:id" element={<Lyrics />} />
           </Route>

@@ -1,13 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import LyricsInfo from "../../components/LyricsInfo";
 
 function Lyrics(): React.ReactElement {
-  return (
-    <>
-      {/* <Link to="/">Home</Link> */}
-      Lyrics
-    </>
-  );
+  return <LyricsInfo />;
 }
 
 export default Lyrics;
