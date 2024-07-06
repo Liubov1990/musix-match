@@ -13,7 +13,16 @@ function SearchTrack() {
     setInputValue(value);
   };
 
+  const isInputInvalid = (): boolean => {
+    const isWhitespaceString = !inputValue.replace(/\s/g, "").length;
+    return isWhitespaceString || !inputValue.length;
+  };
+
   const displaySongsList = async (): Promise<void> => {
+    if (isInputInvalid()) {
+      return;
+    }
+
     const responce = await getTrackSearchRequest(inputValue);
     const { track_list } = responce.data.message.body;
 
@@ -21,9 +30,8 @@ function SearchTrack() {
       return;
     }
 
-    if (track_list && inputValue.length) {
-      setTrackList(track_list);
-    }
+    setTrackList(track_list);
+    setInputValue("");
   };
 
   const displaySongsListOnEnter = (
@@ -38,7 +46,7 @@ function SearchTrack() {
 
   return (
     <Search>
-      <SearchIconWrapper value={inputValue} onClick={displaySongsList}>
+      <SearchIconWrapper onClick={displaySongsList}>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
@@ -47,6 +55,7 @@ function SearchTrack() {
         type="search"
         onKeyUp={displaySongsListOnEnter}
         onChange={handleInputChange}
+        value={inputValue}
       />
     </Search>
   );

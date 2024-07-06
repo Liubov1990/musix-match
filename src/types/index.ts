@@ -96,7 +96,7 @@ export interface ILyricsDetails {
   updated_time: Date;
 }
 
-// api search track by id
+// api search lyrics by id
 
 export interface ITrackSearchByIdResponce {
   message: {

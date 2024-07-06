@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Card,
@@ -7,14 +7,14 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { ILyricsDetails, ITrackDetails } from "../../types";
+import { ITrackDetails } from "../../types";
 import { getTracByIdRequest, getTrackLyricsRequest } from "../../api";
+import { LyricsContext } from "../../context/LyricsContext";
 
 function LyricsInfo(): React.ReactElement {
   const { id } = useParams();
-
+  const { lyrics, setLyrics } = useContext(LyricsContext);
   const [track, setTrack] = useState<ITrackDetails | null>(null);
-  const [lyrics, setLyrics] = useState<ILyricsDetails | null>(null);
 
   useEffect(() => {
     displayLyrics();

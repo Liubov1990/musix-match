@@ -1,5 +1,5 @@
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
-import SearchTrack from "../../components/SearchTrack";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import SearchTrack from "../SearchTrack";
 import { Link, useLocation } from "react-router-dom";
 
 function Header(): React.ReactElement {
