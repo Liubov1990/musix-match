@@ -5,6 +5,6 @@ export default defineConfig({
   base: "/",
   plugins: [react()],
   resolve: {
-    mainFields: [],
+    mainFields: ["browser"],
   },
 });

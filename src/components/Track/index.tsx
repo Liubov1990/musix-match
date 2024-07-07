@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 import {
   Accordion,
@@ -11,12 +11,22 @@ import {
 import AlbumIcon from "@mui/icons-material/Album";
 import PlayIcon from "@mui/icons-material/PlayCircle";
 import TypographyElement from "../TypographyElement";
-import { LyricsContext } from "../../context/LyricsContext";
+import {
+  IChildren,
+  ITrack,
+  ITrackDetails,
+  ITrackSearchByIdResponce,
+  ITrackSearchResponce,
+} from "../../types";
 
-// interface ITrackProps extends ITrack {}
+interface ITrackProps extends ITrack {
+  props?: ITrackDetails;
+  expanded: boolean;
+  onChange: (newExpanded: boolean) => void;
+}
 
-function Track(props: any): React.ReactElement {
-  const { trackList } = useContext(LyricsContext);
+function Track(props: ITrackProps): React.ReactElement {
+  const navigate = useNavigate();
 
   const {
     track: {
@@ -29,6 +39,10 @@ function Track(props: any): React.ReactElement {
       has_lyrics,
     },
   } = props;
+
+  const clickHandler = () => {
+    navigate(`/lyrics/track/${track_id}`);
+  };
 
   return (
     <Accordion>
@@ -52,16 +66,15 @@ function Track(props: any): React.ReactElement {
         </TypographyElement>
 
         {has_lyrics === 1 && (
-          <Link to={`/lyrics/track/${track_id}`}>
-            <Button
-              variant="contained"
-              sx={{
-                width: "100%",
-              }}
-            >
-              View Lyrics
-            </Button>
-          </Link>
+          <Button
+            variant="contained"
+            sx={{
+              width: "100%",
+            }}
+            onClick={clickHandler}
+          >
+            View Lyrics
+          </Button>
         )}
       </AccordionDetails>
     </Accordion>

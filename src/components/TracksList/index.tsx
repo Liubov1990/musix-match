@@ -8,10 +8,9 @@ function TracksList(): React.ReactElement {
 
   const [expanded, setExpanded] = useState<number | false>(false);
 
-  const handleChange =
-    (panel: number) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+  const handleChange = (panel: number) => (newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   return (
     <>
