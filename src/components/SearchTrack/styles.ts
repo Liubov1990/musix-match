@@ -1,4 +1,4 @@
-import { IconButton, InputBase, alpha, styled } from "@mui/material";
+import { InputBase, alpha, styled } from "@mui/material";
 
 export const Search = styled("div")(({ theme }) => ({
   position: "relative",

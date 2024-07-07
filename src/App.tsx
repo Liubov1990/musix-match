@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContextProvider from "./context/LyricsContext";
+import Layout from "./components/Layout";
+import PageNotFound from "./pages/PageNotFound";
 import Home from "./pages/Home";
 import Lyrics from "./pages/Lyrics";
-import PageNotFound from "./pages/PageNotFound";
-import Layout from "./components/Layout";
+
 import "./App.css";
 
 function App(): React.ReactElement {
