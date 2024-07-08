@@ -17,7 +17,7 @@ export const LyricsContext = createContext<LyricsContextType>({
 
 export default function ContextProvider({
   children,
-}: IChildren): React.ReactNode {
+}: IChildren): React.ReactElement {
   const [trackList, setTrackList] = useState<ITrack[]>([]);
   const [lyrics, setLyrics] = useState<ILyricsDetails>({} as ILyricsDetails);
 

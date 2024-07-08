@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import SearchTrack from "../SearchTrack";
 import { Link, useLocation } from "react-router-dom";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 function Header(): React.ReactElement {
   const { pathname } = useLocation();
@@ -13,6 +14,7 @@ function Header(): React.ReactElement {
         px: { xs: 1, sm: 2, md: 5 },
         borderRadius: "50px",
       }}
+      color="default"
     >
       <Toolbar sx={{ flexDirection: { xs: "column", md: "row" } }}>
         <Typography
@@ -22,6 +24,7 @@ function Header(): React.ReactElement {
         >
           <Link to={"/"}>LyricsFinder</Link>
         </Typography>
+        <ThemeSwitcher />
         {pathname === "/" && <SearchTrack />}
       </Toolbar>
     </AppBar>
