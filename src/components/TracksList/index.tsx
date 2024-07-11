@@ -8,17 +8,12 @@ import Loader from "../Loader";
 
 function TracksList(): React.ReactElement {
   const { trackList, isLoading, isError } = useContext(AppContext);
-  const [expanded, setExpanded] = useState<number | false>(false);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const isDisplayLoader = isLoading && !isError;
   const isNoSongsToDisplay = trackList.length === 0 && !isLoading;
   const isSongsToDisplay =
     trackList && trackList.length !== 0 && !isLoading && !isError;
-
-  const handleChange =
-    (panel: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
 
   return (
     <>
@@ -32,14 +27,17 @@ function TracksList(): React.ReactElement {
       {isSongsToDisplay && (
         <CustomPaper>
           <StyledBox component="div">
-            {trackList?.map(({ track }, index) => (
-              <Track
-                key={track.track_id}
-                expanded={expanded === index}
-                onChange={(_event) => handleChange(index)}
-                track={track}
-              />
-            ))}
+            {trackList?.map(({ track }, index) => {
+              return (
+                <Track
+                  key={track.track_id}
+                  track={track}
+                  expandedIndex={expandedIndex}
+                  setExpandedIndex={setExpandedIndex}
+                  currentIndex={index}
+                />
+              );
+            })}
           </StyledBox>
         </CustomPaper>
       )}
