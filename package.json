@@ -1,14 +1,25 @@
 {
-  "name": "musixmatch",
+  "name": "musix-match",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "index.html",
+  "browserslist": [
+    "last 2 versions"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run clean && tsc -b && vite build",
+    "deploy": "npm run build && gh-pages -d dist",
+    "clean": "rimraf dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liubov1990/musix-match.git"
+  },
+  "homepage": "https://liubov1990.github.io/musix-match",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -27,11 +38,13 @@
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "gh-pages": "^6.1.1",
+    "postcss": "^8.4.39",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   }

@@ -1,27 +1,23 @@
 import { Outlet } from "react-router-dom";
+import { Box } from "@mui/material";
 import Header from "../Header";
 import Footer from "../Footer";
-import Container from "@mui/material/Container";
-import Main from "../Main";
+import { StyledContainer } from "./styles";
 
 function PageLayout() {
   return (
-    <Container
-      maxWidth="lg"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        minWidth: "320px",
-        minHeight: "100vh",
-        pt: 2,
-      }}
-    >
+    <StyledContainer maxWidth="lg">
       <Header />
-      <Main>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: "1",
+        }}
+      >
         <Outlet />
-      </Main>
+      </Box>
       <Footer />
-    </Container>
+    </StyledContainer>
   );
 }
 

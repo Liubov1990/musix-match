@@ -1,37 +1,48 @@
-import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
-import { ErrPageImg, ErrPageOverlay } from "./styles";
+import { Button, Typography } from "@mui/material";
+import { Variant } from "@mui/material/styles/createTypography";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { ErrPageImg, ErrPageOverlay, StyledBox } from "./styles";
+
+interface IErrorTextMap {
+  option: Variant;
+  text: string;
+}
 
 function PageNotFound(): React.ReactElement {
   const navigate = useNavigate();
+
+  const errorTextMap = [
+    { option: "h3", text: "Ooops..." },
+    { option: "h2", text: "404" },
+    { option: "h4", text: "Page not found" },
+  ] as IErrorTextMap[];
 
   const clickHandler = () => {
     navigate("/");
   };
 
   return (
-    <Box
-      component="section"
-      sx={{ height: "100vh", position: "relative", overflow: "hidden" }}
-    >
+    <StyledBox component="section">
       <ErrPageImg
-        src="/images/photo-1571330735066-03aaa9429d89.avif"
+        src="/musix-match/images/photo-1571330735066-03aaa9429d89.avif"
         alt="Broken tape"
       />
       <ErrPageOverlay className="overlay">
-        <Typography component="h1" variant="h3">
-          Ooops...
-        </Typography>
-        <Typography component="p" variant="h2">
-          404
-        </Typography>
-        <Typography component="p" variant="h4">
-          Page not found
-        </Typography>
+        {errorTextMap.map(({ option, text }, index) => (
+          <Typography
+            key={index}
+            component="p"
+            variant={option}
+            fontWeight="fontWeightBold"
+          >
+            {text}
+          </Typography>
+        ))}
         <Button
           variant="contained"
+          color="secondary"
           endIcon={<ArrowForwardIcon />}
           onClick={clickHandler}
           sx={{ mt: "50px" }}
@@ -39,7 +50,7 @@ function PageNotFound(): React.ReactElement {
           Back Home
         </Button>
       </ErrPageOverlay>
-    </Box>
+    </StyledBox>
   );
 }
 export default PageNotFound;

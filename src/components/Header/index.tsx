@@ -1,30 +1,24 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import SearchTrack from "../SearchTrack";
 import { Link, useLocation } from "react-router-dom";
+import { Typography } from "@mui/material";
+import SearchTrack from "../SearchTrack";
+import ThemeSwitcher from "../ThemeSwitcher";
+import { StyledBox, StyledAppBar, StyledToolbar } from "./styles";
 
 function Header(): React.ReactElement {
   const { pathname } = useLocation();
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        py: { xs: 2, md: 1 },
-        px: { xs: 1, sm: 2, md: 5 },
-        borderRadius: "50px",
-      }}
-    >
-      <Toolbar sx={{ flexDirection: { xs: "column", md: "row" } }}>
-        <Typography
-          variant="h5"
-          component="h1"
-          sx={{ flexGrow: 1, pb: { xs: 2, md: 0 } }}
-        >
-          <Link to={"/"}>LyricsFinder</Link>
-        </Typography>
+    <StyledAppBar>
+      <StyledToolbar>
+        <StyledBox component="div">
+          <Typography variant="h5" component="h1" sx={{ flexGrow: 1 }}>
+            <Link to={"/"}>LyricsFinder</Link>
+          </Typography>
+          <ThemeSwitcher />
+        </StyledBox>
         {pathname === "/" && <SearchTrack />}
-      </Toolbar>
-    </AppBar>
+      </StyledToolbar>
+    </StyledAppBar>
   );
 }
 

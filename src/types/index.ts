@@ -14,7 +14,7 @@ interface ITrackSearchHeader extends ILyricsSearchHeader {
 
 // api search tracks interfaces
 
-export interface ITrackSearchResponce {
+export interface ITrackSearchResponse {
   message: {
     header: ITrackSearchHeader;
     body: ITrackList;
@@ -73,7 +73,7 @@ export interface ITrackDetails {
 
 // api search lyrics interfaces
 
-export interface ITrackLyricsResponce {
+export interface ITrackLyricsResponse {
   message: {
     header: ILyricsSearchHeader;
     body: ILyrics;
@@ -98,7 +98,7 @@ export interface ILyricsDetails {
 
 // api search lyrics by id
 
-export interface ITrackSearchByIdResponce {
+export interface ITrackSearchByIdResponse {
   message: {
     header: ITrackSearchHeader;
     body: ITrack;
