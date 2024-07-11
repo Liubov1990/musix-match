@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Moment from "react-moment";
 import {
   Accordion,
   AccordionDetails,
@@ -8,76 +7,54 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import AlbumIcon from "@mui/icons-material/Album";
-import PlayIcon from "@mui/icons-material/PlayCircle";
-import TypographyElement from "../TypographyElement";
-import {
-  IChildren,
-  ITrack,
-  ITrackDetails,
-  ITrackSearchByIdResponce,
-  ITrackSearchResponce,
-} from "../../types";
+import { ThemeContext } from "../../context/ThemeContext";
+import { ITrack, ITrackDetails } from "../../types";
+import TrackDetails from "../TrackDetails";
 
 interface ITrackProps extends ITrack {
   props?: ITrackDetails;
   expanded: boolean;
-  onChange: (newExpanded: boolean) => void;
+  onChange: (isExpanded: boolean) => void;
 }
 
-function Track(props: ITrackProps): React.ReactElement {
+function Track({ track }: ITrackProps): React.ReactElement {
+  const { appTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const {
-    track: {
-      track_id,
-      track_name,
-      artist_name,
-      album_name,
-      primary_genres,
-      updated_time,
-      has_lyrics,
-    },
-  } = props;
+  const { track_id, track_name, has_lyrics } = track;
 
   const clickHandler = () => {
     navigate(`/lyrics/track/${track_id}`);
   };
 
   return (
-    <Accordion>
-      <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-        <Typography component="h2">{track_name}</Typography>
-      </AccordionSummary>
-
-      <AccordionDetails>
-        <TypographyElement>
-          <PlayIcon /> {artist_name}
-        </TypographyElement>
-        <TypographyElement>
-          <AlbumIcon /> {album_name}
-        </TypographyElement>
-        <TypographyElement>
-          Genre:
-          {primary_genres.music_genre_list[0]?.music_genre.music_genre_name}
-        </TypographyElement>
-        <TypographyElement>
-          Updated: <Moment format="MM/DD/YYYY">{updated_time}</Moment>
-        </TypographyElement>
-
-        {has_lyrics === 1 && (
-          <Button
-            variant="contained"
-            sx={{
-              width: "100%",
-            }}
-            onClick={clickHandler}
+    <>
+      {has_lyrics !== 0 && (
+        <Accordion>
+          <AccordionSummary
+            aria-controls="panel1d-content"
+            id="panel1d-header"
+            sx={{ background: appTheme.palette.primary.dark }}
           >
-            View Lyrics
-          </Button>
-        )}
-      </AccordionDetails>
-    </Accordion>
+            <Typography component="h2">{track_name}</Typography>
+          </AccordionSummary>
+
+          <AccordionDetails sx={{ background: appTheme.palette.primary.light }}>
+            <TrackDetails track={track} />
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={clickHandler}
+              sx={{
+                width: "100%",
+              }}
+            >
+              View Lyrics
+            </Button>
+          </AccordionDetails>
+        </Accordion>
+      )}
+    </>
   );
 }
 export default Track;

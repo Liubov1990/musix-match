@@ -1,21 +1,23 @@
-import { Switch } from "@mui/material";
 import React, { useContext } from "react";
-import { IAppThemeMode, ThemeContext } from "../../context/ThemeContext";
+import { Switch, Theme } from "@mui/material";
+import { ThemeContext } from "../../context/ThemeContext";
+import baseTheme, { darkTheme } from "../../theme";
 
 function ThemeSwitcher() {
-  const { switchThemeMode } = useContext(ThemeContext);
+  const { switchTheme, appTheme } = useContext(ThemeContext);
 
   const handleSwitchTheme = ({
     target: { checked },
   }: React.ChangeEvent<HTMLInputElement>) =>
-    checked
-      ? switchThemeMode(IAppThemeMode.DARK)
-      : switchThemeMode(IAppThemeMode.LIGHT);
+    checked ? switchTheme(darkTheme as Theme) : switchTheme(baseTheme);
 
   return (
     <Switch
+      checked={appTheme.palette.mode === "dark"}
       onChange={(event) => handleSwitchTheme(event)}
       inputProps={{ "aria-label": "controlled" }}
+      color="secondary"
+      sx={{ transform: "translateX(9px)" }}
     />
   );
 }

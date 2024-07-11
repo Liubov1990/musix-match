@@ -1,11 +1,11 @@
-import SearchIcon from "@mui/icons-material/Search";
-import { Search, SearchIconWrapper, StyledInputBase } from "./styles";
 import { SyntheticEvent, useContext, useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
+import { AppContext } from "../../context/AppContext";
 import { getTrackSearchRequest } from "../../api";
-import { LyricsContext } from "../../context/LyricsContext";
+import { Search, SearchIconWrapper, StyledInputBase } from "./styles";
 
 function SearchTrack() {
-  const { setTrackList } = useContext(LyricsContext);
+  const { setTrackList, setIsLoading, setIsError } = useContext(AppContext);
   const [inputValue, setInputValue] = useState<string>("");
 
   const handleInputChange = (event: SyntheticEvent): void => {
@@ -18,20 +18,30 @@ function SearchTrack() {
     return isWhitespaceString || !inputValue.length;
   };
 
-  const displaySongsList = async (): Promise<void> => {
-    if (isInputInvalid()) {
-      return;
+  const displaySongsList = async (event: SyntheticEvent): Promise<void> => {
+    event.preventDefault();
+
+    try {
+      if (isInputInvalid()) {
+        return;
+      }
+
+      setIsLoading(true);
+      const response = await getTrackSearchRequest(inputValue);
+      const { track_list } = response.data.message.body;
+
+      if (!track_list) {
+        return;
+      }
+
+      setTrackList(track_list);
+      setInputValue("");
+      setIsLoading(false);
+    } catch (error: unknown) {
+      if (error) {
+        setIsError(true);
+      }
     }
-
-    const responce = await getTrackSearchRequest(inputValue);
-    const { track_list } = responce.data.message.body;
-
-    if (!track_list) {
-      return;
-    }
-
-    setTrackList(track_list);
-    setInputValue("");
   };
 
   const displaySongsListOnEnter = (
@@ -40,23 +50,30 @@ function SearchTrack() {
     const { code } = event;
 
     if (code === "Enter") {
-      displaySongsList();
+      displaySongsList(event);
     }
   };
 
   return (
     <Search>
-      <SearchIconWrapper onClick={displaySongsList}>
-        <SearchIcon />
-      </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Search track..."
-        inputProps={{ "aria-label": "search" }}
-        type="search"
-        onKeyUp={displaySongsListOnEnter}
-        onChange={handleInputChange}
-        value={inputValue}
-      />
+      <form
+        action="#"
+        method="get"
+        name="search-tracks"
+        onSubmit={displaySongsList}
+      >
+        <SearchIconWrapper type="submit" aria-label="search">
+          <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+          placeholder="Search track..."
+          inputProps={{ "aria-label": "search" }}
+          type="search"
+          onKeyUp={displaySongsListOnEnter}
+          onChange={handleInputChange}
+          value={inputValue}
+        />
+      </form>
     </Search>
   );
 }
