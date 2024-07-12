@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { AppContext } from "../../context/AppContext";
 import { StyledBox, StyledDivider } from "./styles";
