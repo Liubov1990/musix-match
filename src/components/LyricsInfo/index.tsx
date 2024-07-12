@@ -14,7 +14,8 @@ function LyricsInfo(): React.ReactElement {
     useContext(AppContext);
   const [track, setTrack] = useState<ITrackDetails | null>(null);
 
-  const isNoLyricsToDisplay = !lyrics?.lyrics_body && !isLoading && !isError;
+  const isNoLyricsToDisplay =
+    !lyrics?.lyrics_body && !isLoading && !isError && !track && !lyrics;
   const isDisplayLoader = isLoading && !isError;
   const isDisplayLyrics = track && lyrics && !isLoading && !isError;
 
